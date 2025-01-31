@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import ConnectButton from "../components/ConnectButton";
+import { ethers } from 'ethers';
 
-export default function Home() {
+const Home = () => {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
   const [account, setAccount] = useState(null);
 
@@ -9,14 +9,15 @@ export default function Home() {
   const connectWallet = async () => {
     if (window.ethereum) {
       try {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const accounts = await provider.send("eth_requestAccounts", []);
         setAccount(accounts[0]);
         setIsWalletConnected(true);
-      } catch (err) {
-        console.error("Error connecting wallet:", err);
+      } catch (error) {
+        console.error("Erreur de connexion au wallet", error);
       }
     } else {
-      alert("Please install MetaMask or Rabby wallet.");
+      alert("Veuillez installer MetaMask ou Rabby Wallet !");
     }
   };
 
@@ -27,16 +28,19 @@ export default function Home() {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "50px" }}>
-      <h1>🚀 Stake'N'clic</h1>
-      <p>Connect your wallet</p>
-      
-      {/* Wallet Connect Button */}
-      <ConnectButton connectWallet={connectWallet} isWalletConnected={isWalletConnected} account={account} />
+    <div style={{ textAlign: 'center' }}>
+      <h1>Bienvenue sur StakeNclic!</h1>
 
-      {/* Action Buttons */}
+      {/* Bouton de connexion du wallet en haut à droite */}
+      <div style={{ position: 'absolute', top: '20px', right: '20px' }}>
+        <button onClick={connectWallet} style={{ padding: '10px 20px', fontSize: '16px' }}>
+          {isWalletConnected ? `Connecté: ${account.slice(0, 6)}...` : 'Se connecter'}
+        </button>
+      </div>
+
+      {/* Boutons Stake, Claim, Clic */}
       {isWalletConnected && (
-        <div className="buttons-container">
+        <div className="buttons-container" style={{ marginTop: '50px' }}>
           <button onClick={() => handleAction('Stake')} className="button stake-button">
             Stake
           </button>
@@ -50,5 +54,6 @@ export default function Home() {
       )}
     </div>
   );
-}
+};
 
+export default Home;
