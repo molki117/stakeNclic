@@ -1,16 +1,16 @@
 // components/Buttons.js
-import React, { useState } from 'react';
+import React from 'react';
 
-const Buttons = ({ isWalletConnected }) => {
+const Buttons = ({ handleAction }) => {
   return (
     <div className="buttons-container">
-      <button className="button stake-button" disabled={!isWalletConnected}>
+      <button onClick={() => handleAction('Stake')} className="button stake-button">
         Stake
       </button>
-      <button className="button claim-button" disabled={!isWalletConnected}>
+      <button onClick={() => handleAction('Claim')} className="button claim-button">
         Claim
       </button>
-      <button className="button clic-button" disabled={!isWalletConnected}>
+      <button onClick={() => handleAction('Clic')} className="button clic-button">
         Clic
       </button>
     </div>
