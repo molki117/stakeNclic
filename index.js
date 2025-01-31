@@ -1,10 +1,14 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+// pages/index.js
+import React from 'react';
+import Buttons from '../components/Buttons';  // Importer les boutons
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className="container">
-      <h1>StakeNclic</h1>
-      <ConnectButton /> {/* Bouton de connexion */}
+    <div className="home-page">
+      <h1>Bienvenue sur StakeNclic!</h1>
+      <Buttons />  {/* Afficher les boutons */}
     </div>
   );
-}
+};
+
+export default Home;
