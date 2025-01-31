@@ -1,3 +1,4 @@
+/* styles/globals.css */
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
@@ -16,8 +17,6 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-
-/* styles/globals.css */
 
 .buttons-container {
   display: flex;
@@ -50,4 +49,14 @@ button:hover {
   background-color: red;  /* Red */
   color: white;
   font-weight: bold;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
 }
