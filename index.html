@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicking Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Clicking Game</h1>
+        <div>
+            <button id="connectWalletBtn">Connecter le Wallet</button>
+            <p id="walletAddress"></p>
+        </div>
+        <div>
+            <button id="clickBtn" disabled>Click</button>
+            <button id="stakeBtn" disabled>Stake</button>
+            <button id="claimBtn" disabled>Claim</button>
+        </div>
+        <div>
+            <p id="gameStatus"></p>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.6.9/dist/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
