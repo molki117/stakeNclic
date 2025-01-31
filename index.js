@@ -1,14 +1,24 @@
-// pages/index.js
-import React from 'react';
-import Buttons from '../components/Buttons';  // Importer les boutons
+import { useState } from 'react';
+import ConnectButton from '../components/ConnectButton';
+import Buttons from '../components/Buttons';
 
-const Home = () => {
+export default function Home() {
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
+
+  const connectWallet = async () => {
+    // Logique de connexion du wallet ici...
+    setIsWalletConnected(true); // Met à jour l'état du wallet connecté
+  };
+
   return (
-    <div className="home-page">
-      <h1>Bienvenue sur StakeNclic!</h1>
-      <Buttons />  {/* Afficher les boutons */}
+    <div style={{ textAlign: 'center' }}>
+      <h1>🚀 StakeNclic</h1>
+      <p>Connect your wallet</p>
+
+      <ConnectButton connectWallet={connectWallet} />
+
+      {/* Passe l'état du wallet connecté aux boutons */}
+      <Buttons isWalletConnected={isWalletConnected} />
     </div>
   );
-};
-
-export default Home;
+}
